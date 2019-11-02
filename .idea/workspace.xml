@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efaca616-454f-4a8a-8bc8-9d7190ef9cb2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/converter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/converter_factory.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/converter_rule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/file_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/file_loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,7 +40,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RcPQIAsjnyIiGohH2DRxbSfo8f" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -77,7 +82,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/main.py" />
-      <option name="PARAMETERS" value="localhost/magento2 $USER_HOME$/ admin admin123 https://eltkom.pl/polkas/Towary.xml prod" />
+      <option name="PARAMETERS" value="$USER_HOME$/Desktop/config.json" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -104,7 +109,24 @@
       <workItem from="1570187657387" duration="5718000" />
       <workItem from="1570290816567" duration="24067000" />
       <workItem from="1570360291909" duration="18596000" />
-      <workItem from="1570449064335" duration="10013000" />
+      <workItem from="1570449064335" duration="11813000" />
+      <workItem from="1571158281187" duration="6032000" />
+      <workItem from="1571173165530" duration="770000" />
+      <workItem from="1571393828119" duration="31000" />
+      <workItem from="1571393879119" duration="16227000" />
+      <workItem from="1571568594069" duration="27186000" />
+      <workItem from="1571774344261" duration="13000" />
+      <workItem from="1572039116796" duration="8937000" />
+      <workItem from="1572083705946" duration="6386000" />
+      <workItem from="1572099943722" duration="23045000" />
+      <workItem from="1572135579442" duration="1800000" />
+      <workItem from="1572219825390" duration="4220000" />
+      <workItem from="1572362277377" duration="29000" />
+      <workItem from="1572473809718" duration="3110000" />
+      <workItem from="1572524419552" duration="609000" />
+      <workItem from="1572542430350" duration="515000" />
+      <workItem from="1572544401675" duration="7245000" />
+      <workItem from="1572652002667" duration="4054000" />
     </task>
     <servers />
   </component>
@@ -125,6 +147,6 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/magento_comparer$MagentoComparer.coverage" NAME="MagentoComparer Coverage Results" MODIFIED="1570484361553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
+    <SUITE FILE_PATH="coverage/magento_comparer$MagentoComparer.coverage" NAME="MagentoComparer Coverage Results" MODIFIED="1572224299968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
   </component>
 </project>
