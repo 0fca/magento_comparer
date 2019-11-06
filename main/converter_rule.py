@@ -1,6 +1,4 @@
 class ConverterRule:
-    expression = ""
-
     def __init__(self, convert_expression):
         self.expression = convert_expression
 

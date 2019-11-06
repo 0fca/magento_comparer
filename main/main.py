@@ -1,6 +1,7 @@
 import json
 import logging
 import sys
+import numpy
 
 from serializer import Serializer
 from rest_client import RestClient
@@ -11,7 +12,13 @@ from converter_rule import ConverterRule
 
 class Main:
     config = dict()
-    print_to_stdout = True
+    print_to_stdout: bool = True
+
+    converter_rules = {
+        "int": "0:False;range(1, sys.maxsize):True",
+        "float": "0.0:False;numpy.arange(0.1, 100000.0, 0.1):True",
+        "bool": "False:0;True:1"
+    }
 
     def __init__(self, config):
         self.config = config
@@ -57,9 +64,18 @@ class Main:
                         type_name = result[0]
 
                         if isinstance(level, dict):
-                            if key in level and key_sequence.index(key) == len(key_sequence) - 1:
-                                level[key] = self.convert_to_type(type_name, type(type_name), value_from_xml)
+                            actual_type_name = eval(value_from_xml).__class__.__name__
+                            if key_sequence.index(key) == len(key_sequence) - 1:
+                                if type_name != actual_type_name:
+                                    level[key] = self.convert_to_type(actual_type_name, value_from_xml)
+                                else:
+                                    level[key] = eval(value_from_xml)
                             elif key in level:
+                                level = level[key]
+                            elif key not in level:
+                                # TODO: It seems to be a good idea to add some kind of type recognition here,
+                                #  recoginition between list and dict.
+                                level[key] = dict()
                                 level = level[key]
                             else:
                                 logging.info("Couldn't update value, "
@@ -76,6 +92,7 @@ class Main:
                                     if "value" in tmp:
                                         tmp["value"] = value_from_xml
                                         level[index] = tmp
+
                                     else:
                                         logging.error("This does not seem to be an attribute object.")
                                 else:
@@ -167,9 +184,9 @@ class Main:
 
                 if attribute:
                     special_price = float(attribute["value"])
-                logging.info(
-                    "Processing product: {0}, changing old values [{1},{2}] to the following: price = {3}, "
-                    "special price = {4} "
+                    logging.info(
+                        "Processing product: {0}, changing old values [{1},{2}] to the following: price = {3}, "
+                        "special price = {4} "
                         .format(product["product"]["sku"],
                                 magento_product["price"],
                                 special_price,
@@ -228,6 +245,7 @@ class Main:
 
         if mode == "devel":
             self.add_dummy_products(rest_client, headers)
+
         logging.info("User has been successfully logged in.")
         read_item_list = self.prepare_different_items_list(rest_client, headers)
         self.update_magento_products(rest_client, headers, read_item_list)
@@ -249,11 +267,16 @@ class Main:
         key_sequence[0] = tmp[1]
         return type_string, key_sequence
 
-    def convert_to_type(self, to_type, from_type, value_from_xml):
+    def convert_to_type(self, from_type, value_from_xml):
         converter_factory = TypeConverterFactory()
-        converter_rule = ConverterRule()
-        converter = converter_factory.create(from_type, converter_rule)
-        converter.convert()
+        if from_type in self.converter_rules:
+            converter_expression = self.converter_rules[from_type]
+            converter_rule = ConverterRule(converter_expression)
+            converter = converter_factory.create(from_type, converter_rule)
+            result = converter.convert(value_from_xml)
+        else:
+            result = value_from_xml
+        return result
 
 
 if __name__ == '__main__':
