@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efaca616-454f-4a8a-8bc8-9d7190ef9cb2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/magento-comparer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/magento-comparer.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/converter.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/converter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/converter_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/converter_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/converter_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/converter_rule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/file_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/file_loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,14 +43,14 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/main/main.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -84,7 +79,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/main.py" />
-      <option name="PARAMETERS" value="$USER_HOME$/Desktop/config.json" />
+      <option name="PARAMETERS" value="$USER_HOME$/Desktop/config.json price" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -155,7 +150,10 @@
       <workItem from="1572741886730" duration="2447000" />
       <workItem from="1572816066055" duration="13172000" />
       <workItem from="1572853371337" duration="8591000" />
-      <workItem from="1572986585540" duration="12470000" />
+      <workItem from="1572986585540" duration="20705000" />
+      <workItem from="1573324225376" duration="723000" />
+      <workItem from="1573509780355" duration="42000" />
+      <workItem from="1573590993498" duration="5782000" />
     </task>
     <servers />
   </component>
@@ -176,6 +174,6 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/magento_comparer$MagentoComparer.coverage" NAME="MagentoComparer Coverage Results" MODIFIED="1572998303977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
+    <SUITE FILE_PATH="coverage/magento_comparer$MagentoComparer.coverage" NAME="MagentoComparer Coverage Results" MODIFIED="1573599788110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
   </component>
 </project>

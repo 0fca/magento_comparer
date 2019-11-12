@@ -74,13 +74,10 @@ class Main:
                                 level = level[key]
                             elif key not in level:
                                 # TODO: It seems to be a good idea to add some kind of type recognition here,
-                                #  recoginition between list and dict.
+                                #  recognition between list and dict.
                                 level[key] = dict()
                                 level = level[key]
                             else:
-                                logging.info("Couldn't update value, "
-                                             "Magento product object doesnt contain the following key path: %s" %
-                                             key_path)
                                 continue
                         else:
                             logging.info("Is not an instance of dict, trying as list.")
@@ -96,7 +93,6 @@ class Main:
                                     else:
                                         logging.error("This does not seem to be an attribute object.")
                                 else:
-                                    logging.error("The list does not contain the key: %s" % key_path)
                                     continue
 
                             else:
@@ -143,10 +139,16 @@ class Main:
 
     def prepare_different_items_list(self, rest_client, headers):
         serializer = Serializer()
-        xml = rest_client.send_get_binary(self.config["global"]["xml_url"], None, None)
+        url = self.config["global"]["xml_url"]
+        xml = rest_client.send_get_binary(url, None, None)
+        read_item_list = list()
+        if xml[1] != 200:
+            logging.info("No file found under the URI: %s, exiting now..." % str(url))
+            exit(-1)
+
         root_item = serializer.deserialize_xml(str(xml[0], "utf8"))
         commodities = root_item
-        read_item_list = list()
+
         magento_product_list = list(self.get_product_list(headers)[0]["items"])
         magento_product_dict = dict()
 
@@ -162,7 +164,7 @@ class Main:
                     if result_magento_product:
                         read_item_list.append(result_magento_product)
                 else:
-                    logging.error("There is no product of sku {0} in Magento database.".format(commodity[1].text))
+                    logging.warning("There is no product of sku {0} in Magento database.".format(commodity[1].text))
 
         return read_item_list
 
@@ -231,7 +233,8 @@ class Main:
 
     def main(self):
         self.configure_logging()
-        logging.info("Logging to file " + self.config["global"]["log_path"] + 'magento_updater.log')
+        logging.getLogger("main.stdout").info("Logging to file " + self.config["global"]["log_path"]
+                                              + 'magento_updater.log')
 
         mode = "prod"
         if self.config["global"]["mode"] is not None:
@@ -253,13 +256,15 @@ class Main:
 
     def configure_logging(self):
         root = logging.getLogger()
-        root.setLevel(self.config["global"]["log_level"])
+        root.setLevel(logging.INFO)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
         fh = logging.FileHandler(filename=self.config["global"]["log_path"] + 'magento_updater.log')
         fh.setLevel(self.config["global"]["log_level"])
         fh.setFormatter(formatter)
         root.addHandler(fh)
+
+        # TODO: There is some shit with loggers to be done if the cpu usage is too high because of logging to stdout.
 
     def separate_type(self, key_sequence):
         tmp = str(key_sequence[0]).split("]")
@@ -279,9 +284,25 @@ class Main:
         return result
 
 
+def match_keys(attributes: list, config: dict):
+    attributes_result: dict = dict()
+    if attributes:
+        attributes_dict: dict = config["attributes"]
+        key_count = len(attributes_dict.keys())
+        for i in range(0, key_count):
+            key = list(attributes_dict.keys())[i]
+            value_key = str(key).split("]")[1]
+
+            if value_key in attributes_list:
+                attributes_result[key] = attributes_dict[key]
+        config["attributes"] = attributes_result
+
+
 if __name__ == '__main__':
     fileLoader = FileLoader()
     fileStrContent = fileLoader.loadFile(sys.argv[1])
+    attributes_list: list = str(sys.argv[2]).split(",")
     configObject = json.loads(fileStrContent)
+    match_keys(attributes_list, configObject)
     m = Main(configObject)
     m.main()
